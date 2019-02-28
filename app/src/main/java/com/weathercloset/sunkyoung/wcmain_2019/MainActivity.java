@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar loader;
     Typeface weatherFont;
     String city = "Seoul, KR";
+
     /* Please Put your API KEY here */
     private String OPEN_WEATHER_MAP_API = "";
     @Override
@@ -33,6 +37,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        ListView listview ;
+        ListViewAdapter adapter;
+
+        // Adapter 생성
+        adapter = new ListViewAdapter() ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = findViewById(R.id.listview1);
+        listview.setAdapter(adapter);
+
+        // 첫 번째 아이템 추가.
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.cardigan_col),
+        ContextCompat.getDrawable(this, R.drawable.jumper_col),ContextCompat.getDrawable(this, R.drawable.coat_col),
+        ContextCompat.getDrawable(this, R.drawable.coat),ContextCompat.getDrawable(this, R.drawable.cardigan),
+        "Outer") ;
+        // 두 번째 아이템 추가.
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.shirt_col),
+                ContextCompat.getDrawable(this, R.drawable.tshirt_col),ContextCompat.getDrawable(this, R.drawable.hoodie_col),
+                ContextCompat.getDrawable(this, R.drawable.hoodie),ContextCompat.getDrawable(this, R.drawable.tshirt),
+                "Top") ;
+        // 세 번째 아이템 추가.
+        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.dungarees_col),
+                ContextCompat.getDrawable(this, R.drawable.trousers_col),ContextCompat.getDrawable(this, R.drawable.shorts_col),
+                ContextCompat.getDrawable(this, R.drawable.dungarees),ContextCompat.getDrawable(this, R.drawable.trousers),
+                "Bottom") ;
 
         selectCity = (TextView) findViewById(R.id.selectCity);
         cityField = (TextView) findViewById(R.id.city_field);
@@ -110,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     cityField.setText(json.getString("name").toUpperCase(Locale.KOREA) + ", " + json.getJSONObject("sys").getString("country"));
                     detailsField.setText(details.getString("description").toUpperCase(Locale.KOREA));
                     currentTemperatureField.setText(String.format("%.2f", main.getDouble("temp")) + "°");
-                    humidity_field.setText("Humidity: " + main.getString("humidity") + "%");
+                    humidity_field.setText("습도: " + main.getString("humidity") + "%");
                     updatedField.setText(df.format(new Date(json.getLong("dt") * 1000)));
                     weatherIcon.setText(Html.fromHtml(Function.setWeatherIcon(details.getInt("id"),
                             json.getJSONObject("sys").getLong("sunrise") * 1000,
