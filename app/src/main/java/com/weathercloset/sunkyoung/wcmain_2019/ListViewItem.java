@@ -1,6 +1,7 @@
 package com.weathercloset.sunkyoung.wcmain_2019;
 
 import android.graphics.drawable.Drawable;
+import android.widget.LinearLayout;
 
 /**
  * Created by SunKyoung on 2019-02-28.
@@ -13,6 +14,7 @@ public class ListViewItem {
     private Drawable icon4 ;
     private Drawable icon5 ;
     private String titleStr ;
+
 
     public void setIcon1(Drawable icon) {
         icon1 = icon ;
