@@ -5,23 +5,16 @@ package com.weathercloset.sunkyoung.wcmain_2019;
  */
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +37,7 @@ public class Tab1 extends Fragment {
     String city = "Seoul, KR";
 
     /* Please Put your API KEY here */
-    private String OPEN_WEATHER_MAP_API = "";
+    private String OPEN_WEATHER_MAP_API = "c546ec57ad58273d9e4c1bbea6f1c672";
 
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -82,17 +75,17 @@ public class Tab1 extends Fragment {
         adapter.addItem(getDrawable(ctx, R.drawable.cardigan_col),
                 getDrawable(ctx, R.drawable.jumper_col),getDrawable(ctx, R.drawable.coat_col),
                 getDrawable(ctx, R.drawable.coat),getDrawable(ctx, R.drawable.cardigan),
-                "Outer") ;
+                "OUTER") ;
         // 두 번째 아이템 추가.
         adapter.addItem(getDrawable(ctx, R.drawable.shirt_col),
                 getDrawable(ctx, R.drawable.tshirt_col),getDrawable(ctx, R.drawable.hoodie_col),
                 getDrawable(ctx, R.drawable.hoodie),getDrawable(ctx, R.drawable.tshirt),
-                "Top") ;
+                "TOP") ;
         // 세 번째 아이템 추가.
         adapter.addItem(getDrawable(ctx, R.drawable.dungarees_col),
                 getDrawable(ctx, R.drawable.trousers_col),getDrawable(ctx, R.drawable.shorts_col),
                 getDrawable(ctx, R.drawable.dungarees),getDrawable(ctx, R.drawable.trousers),
-                "Bottom") ;
+                "BOTTOM") ;
 
         // 날씨
         selectCity = (TextView) scrollView.findViewById(R.id.selectCity);
@@ -102,8 +95,9 @@ public class Tab1 extends Fragment {
         currentTemperatureField = (TextView) scrollView.findViewById(R.id.current_temperature_field);
         humidity_field = (TextView) scrollView.findViewById(R.id.humidity_field);
         weatherIcon = (TextView) scrollView.findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(ctx.getAssets(), "weathericons_regular_webfont.ttf");
+        Typeface weatherFont = getResources().getFont(R.font.weathericons_regular_webfont);
         weatherIcon.setTypeface(weatherFont);
+
         taskLoadUp(city);
         return scrollView;
     }

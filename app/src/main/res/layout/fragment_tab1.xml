@@ -17,6 +17,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/nixgonfontsm"
                 android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
@@ -25,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/city_field"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/nixgonfontsm"
                 android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="13sp" />
@@ -57,6 +59,7 @@
                 android:layout_below="@+id/weather_icon"
                 android:layout_marginTop="100dp"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/scdream6"
                 android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="50sp" />
@@ -67,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/current_temperature_field"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/scdream4"
                 android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
@@ -76,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_field"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/scdream4"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#000000" />
         </RelativeLayout>
