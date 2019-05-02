@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg_07_17">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -10,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/scdream6"
         android:text="오늘 입은 옷들을 클릭해주세요"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="50sp" />
     <ListView
         android:id="@+id/listview2"
