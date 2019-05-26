@@ -5,7 +5,9 @@ package com.weathercloset.sunkyoung.wcmain_2019;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,7 +15,10 @@ import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,7 +36,7 @@ import static android.support.v7.content.res.AppCompatResources.getDrawable;
 
 public class Tab1 extends Fragment {
     private Activity ctx;
-    TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, weatherIcon, updatedField;
+    TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, wind_field, weatherIcon, updatedField;
 //    ProgressBar loader;
     Typeface weatherFont;
     String city = "Seoul, KR";
@@ -93,45 +98,50 @@ public class Tab1 extends Fragment {
         updatedField = (TextView) scrollView.findViewById(R.id.updated_field);
         detailsField = (TextView) scrollView.findViewById(R.id.details_field);
         currentTemperatureField = (TextView) scrollView.findViewById(R.id.current_temperature_field);
+        wind_field = (TextView) scrollView.findViewById(R.id.wind_field);
         humidity_field = (TextView) scrollView.findViewById(R.id.humidity_field);
         weatherIcon = (TextView) scrollView.findViewById(R.id.weather_icon);
         Typeface weatherFont = getResources().getFont(R.font.weathericons_regular_webfont);
         weatherIcon.setTypeface(weatherFont);
+
+
+
+        selectCity.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ctx);
+                alertDialog.setTitle("Change City");
+                final EditText input = new EditText(ctx);
+                input.setText(city);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                alertDialog.setView(input);
+
+                alertDialog.setPositiveButton("Change",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                city = input.getText().toString();
+                                taskLoadUp(city);
+                            }
+                        });
+                alertDialog.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
 
         taskLoadUp(city);
         return scrollView;
     }
 
 
-//        selectCity.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-//            alertDialog.setTitle("Change City");
-//            final EditText input = new EditText(MainActivity.this);
-//            input.setText(city);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-//                    LinearLayout.LayoutParams.MATCH_PARENT,
-//                    LinearLayout.LayoutParams.MATCH_PARENT);
-//            input.setLayoutParams(lp);
-//            alertDialog.setView(input);
-//
-//            alertDialog.setPositiveButton("Change",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            city = input.getText().toString();
-//                            taskLoadUp(city);
-//                        }
-//                    });
-//            alertDialog.setNegativeButton("Cancel",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.cancel();
-//                        }
-//                    });
-//            alertDialog.show();
-//        }
-//    });
+
 
 
     public void taskLoadUp(String query) {
@@ -162,11 +172,13 @@ public class Tab1 extends Fragment {
                 if (json != null) {
                     JSONObject details = json.getJSONArray("weather").getJSONObject(0);
                     JSONObject main = json.getJSONObject("main");
+                    JSONObject wind = json.getJSONObject("wind");
                     DateFormat df = DateFormat.getDateTimeInstance();
 
                     cityField.setText(json.getString("name").toUpperCase(Locale.KOREA) + ", " + json.getJSONObject("sys").getString("country"));
                     detailsField.setText(details.getString("description").toUpperCase(Locale.KOREA));
                     currentTemperatureField.setText(String.format("%.2f", main.getDouble("temp")) + "°");
+                    wind_field.setText("풍속: "+wind.getString("speed")+"m/s");
                     humidity_field.setText("습도: " + main.getString("humidity") + "%");
                     updatedField.setText(df.format(new Date(json.getLong("dt") * 1000)));
                     weatherIcon.setText(Html.fromHtml(Function.setWeatherIcon(details.getInt("id"),
