@@ -27,6 +27,16 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // for request runtime permission
+    implementation 'com.karumi:dexter:5.0.0'
+    // for request location
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+    // Retrofit, RxJava
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
 
-
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

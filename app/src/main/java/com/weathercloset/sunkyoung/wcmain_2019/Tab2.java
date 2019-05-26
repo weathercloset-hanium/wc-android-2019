@@ -20,6 +20,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -27,6 +28,15 @@ import static android.support.v7.content.res.AppCompatResources.getDrawable;
 
 public class Tab2 extends Fragment {
     private Activity ctx;
+
+    static Tab2 instance;
+
+    public static Tab2 getInstance() {
+        if (instance == null)
+            instance = new Tab2();
+        return instance;
+
+    }
 
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -81,6 +91,8 @@ public class Tab2 extends Fragment {
                 getDrawable(ctx, R.drawable.gasmask),getDrawable(ctx, R.drawable.gasmask),
                 "0","0","0","0","0",
                 "ETC") ;
+
+
         // Inflate the layout for this fragment
         return linearLayout;
     }

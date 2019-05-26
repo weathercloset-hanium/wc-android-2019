@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 /**
@@ -47,15 +48,15 @@ public class ListViewAdapter2 extends BaseAdapter{
         ImageView iconImageView3 = convertView.findViewById(R.id.imageView3) ;
         ImageView iconImageView4 = convertView.findViewById(R.id.imageView4) ;
         ImageView iconImageView5 = convertView.findViewById(R.id.imageView5) ;
-        TextView countTextView1 = convertView.findViewById(R.id.countText1) ;
-        TextView countTextView2 = convertView.findViewById(R.id.countText2) ;
-        TextView countTextView3 = convertView.findViewById(R.id.countText3) ;
-        TextView countTextView4 = convertView.findViewById(R.id.countText4) ;
-        TextView countTextView5 = convertView.findViewById(R.id.countText5) ;
-        TextView titleTextView = convertView.findViewById(R.id.textView1) ;
+        final TextView countTextView1 = convertView.findViewById(R.id.countText1) ;
+        final TextView countTextView2 = convertView.findViewById(R.id.countText2) ;
+        final TextView countTextView3 = convertView.findViewById(R.id.countText3) ;
+        final TextView countTextView4 = convertView.findViewById(R.id.countText4) ;
+        final TextView countTextView5 = convertView.findViewById(R.id.countText5) ;
+        final TextView titleTextView = convertView.findViewById(R.id.textView1) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        ListViewItem2 listViewItem2 = listViewItemList2.get(position);
+        final ListViewItem2 listViewItem2 = listViewItemList2.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         iconImageView1.setImageDrawable(listViewItem2.getIcon1());
@@ -69,6 +70,44 @@ public class ListViewAdapter2 extends BaseAdapter{
         countTextView4.setText(listViewItem2.getCount4());
         countTextView5.setText(listViewItem2.getCount5());
         titleTextView.setText(listViewItem2.getTitle());
+
+        // 클릭 이벤트
+        iconImageView1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show();
+                countTextView1.setText(String.valueOf(Integer.parseInt(listViewItem2.getCount1())+1));
+            }
+        });
+        iconImageView2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show();
+                countTextView2.setText(String.valueOf(Integer.parseInt(listViewItem2.getCount2())+1));
+            }
+        });
+        iconImageView3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show();
+                countTextView3.setText(String.valueOf(Integer.parseInt(listViewItem2.getCount3())+1));
+            }
+        });
+        iconImageView4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show();
+                countTextView4.setText(String.valueOf(Integer.parseInt(listViewItem2.getCount4())+1));
+            }
+        });
+        iconImageView5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show();
+                countTextView5.setText(String.valueOf(Integer.parseInt(listViewItem2.getCount5())+1));
+            }
+        });
+
 
         return convertView;
     }
