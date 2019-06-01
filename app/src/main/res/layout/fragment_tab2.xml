@@ -12,9 +12,9 @@
         android:fontFamily="@font/scdream6"
         android:text="오늘 입은 옷들을 클릭해주세요"
         android:textColor="#ffffff"
-        android:textSize="50sp" />
+        android:textSize="24sp" />
     <ListView
         android:id="@+id/listview2"
         android:layout_width="match_parent"
-        android:layout_height="360dp"/>
+        android:layout_height="500dp"/>
 </LinearLayout>

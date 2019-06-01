@@ -56,14 +56,6 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="13sp" />
                 <TextView
-                    android:id="@+id/selectCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change City"
-                    android:textStyle="italic"
-                    android:textSize="11dp"
-                    android:textColor="@color/colorAccent" />
-                <TextView
                     android:id="@+id/weather_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,10 +101,18 @@
                 android:id="@+id/listview1"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"/>
-            <!--<ListView-->
-                <!--android:id="@+id/listforecastview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"/>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주간날씨"
+                android:fontFamily="@font/scdream4"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                />
+            <ListView
+                android:id="@+id/listforecastview"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"/>
         </LinearLayout>
         <!--<ProgressBar-->
         <!--android:id="@+id/loading"-->

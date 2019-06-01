@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -87,5 +88,45 @@ public class Function {
             }
         }
         return icon;
+    }
+
+    public static String setForecastWeatherIcon(int actualId) {
+        int id = actualId / 100;
+        String icon = "";
+        switch (id) {
+            case 2:
+                icon = "&#xf01e;";
+                break;
+            case 3:
+                icon = "&#xf01c;";
+                break;
+            case 7:
+                icon = "&#xf014;";
+                break;
+            case 8:
+                icon = "&#xf013;";
+                break;
+            case 6:
+                icon = "&#xf01b;";
+                break;
+            case 5:
+                icon = "&#xf019;";
+                break;
+        }
+
+        return icon;
+    }
+
+    public static String convertUnixToDate(Long dt) {
+        Date date = new Date(dt*1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
+        String formatted = sdf.format(date);
+        return formatted;
+    }
+    public static String convertUnixToDay(Long dt){
+        Date date = new Date(dt*1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE");
+        String formatted = sdf.format(date);
+        return formatted.toUpperCase();
     }
 }
